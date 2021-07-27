@@ -130,3 +130,4 @@ dmypy.json
 
 # test stuff
 foo*
+99delete_az_resources.sh
