@@ -8,6 +8,21 @@ This repository contains scripts that will deploy an AKS cluster with associated
    ```
    git clone https://github.com/sajitsasi/aks-workshop.git
    ```
+2. Download the latest source code from MS Learn  
+   ```
+   cd aks-workshop/src
+   git clone https://github.com/MicrosoftDocs/mslearn-aks-workshop-ratings-api.git
+   git clone https://github.com/MicrosoftDocs/mslearn-aks-workshop-ratings-web.git
+   ```
+3. Ensure your prerequisite packages are installed:
+   * Bash shell in Linux/MacOS and WSL2 in Windows
+   * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
+   * [Git](https://git-scm.com/downloads)
+   * [Docker](https://docs.docker.com/engine/install/)
+   * [kubectl](https://kubernetes.io/docs/tasks/tools/) - choose appropriate platform
+   * [helm](https://helm.sh/docs/intro/install/)
+   * [Visual Studio Code](https://code.visualstudio.com/Download) - this is optional
+
 
 
 ## Contributing
