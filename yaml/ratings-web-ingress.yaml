@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1 # IMPORTANT change to v1beta1 if k8s ver < 1.19
+apiVersion: networking.k8s.io/v1beta1 # IMPORTANT change to v1beta1 if k8s ver < 1.19
 kind: Ingress
 metadata:
   name: ratings-web-ingress
