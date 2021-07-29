@@ -32,6 +32,7 @@ export AZ_ACR_NAME="acr${KEY}"
 
 export RATINGS_API_DEPLOY_YAML="ratings-api-deployment.yaml"
 export RATINGS_API_SERVICE_YAML="ratings-api-service.yaml"
+export RATINGS_API_HPA_YAML="ratings-api-hpa.yaml"
 export RATINGS_WEB_DEPLOY_YAML="ratings-web-deployment.yaml"
 export RATINGS_WEB_SERVICE_YAML="ratings-web-service.yaml"
 export RATINGS_WEB_SERVICE_CLUSTERIP_YAML="ratings-web-service-clusterip.yaml"
