@@ -25,9 +25,4 @@ runcmd "az aks enable-addons \
 --name ${AZ_AKS_CLUSTER} \
 --addons monitoring \
 --workspace-resource-id ${AKS_LAW_WORKSPACE_ID}"
-pruncmd "az aks enable-addons \
--g ${AZ_RG} \
--n ${AZ_AKS_CLUSTER} \
---addons monitoring \
---workspace-resource-id ${AKS_LAW_WORKSPACE_ID}"
 printcmd "please give 10 minutes before monitoring data is written to LA workspace..."
