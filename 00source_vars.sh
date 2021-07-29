@@ -6,6 +6,15 @@ else
     KEY=${RANDOM}
     echo -n ${KEY} > .key
 fi
+
+DIR=$(pwd)
+if [ !-d ${DIR}/src/mslearn-aks-workshop-ratings-api ]; then
+    git clone https://github.com/microsoft/mslearn-aks-workshop-ratings-api.git src/mslearn-aks-workshop-ratings-api
+fi
+
+if [ !-d ${DIR}/src/mslearn-aks-workshop-ratings-web ]; then
+    git clone https://github.com/microsoft/mslearn-aks-workshop-ratings-web.git src/mslearn-aks-workshop-ratings-web
+fi
 export AZ_LOCATION="eastus"
 export AZ_RG="aks-wks-${KEY}-rg"
 export AZ_AKS_SUBNET="aks-subnet"
@@ -29,6 +38,7 @@ export RATINGS_WEB_SERVICE_CLUSTERIP_YAML="ratings-web-service-clusterip.yaml"
 export RATINGS_WEB_INGRESS_YAML="ratings-web-ingress.yaml"
 export RATINGS_WEB_INGRESS_TLS_YAML="ratings-web-ingress-tls.yaml"
 export CLUSTER_ISSUER_YAML="cluster-issuer.yaml"
+export AKS_LAW_WORKSPACE="aks-wks-${KEY}-workspace"
 
 GREEN="\e[01;32m"
 BLUE="\e[01;36m"

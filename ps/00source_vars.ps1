@@ -1,6 +1,6 @@
 
 if (Test-Path -Path ..\.key -PathType leaf) {
-    $KEY=type ..\.key
+    $KEY=Get-Content ..\.key
 } else {
     $KEY=Get-Random -Maximum 10000
     $KEY | Out-File -FilePath ..\.key

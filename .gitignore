@@ -132,3 +132,4 @@ dmypy.json
 foo*
 99delete_az_resources.sh
 .key
+src/mslearn*
