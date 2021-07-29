@@ -5,12 +5,13 @@ DIR=$(pwd)
 
 #1. Create a Log Analytics Workspace
 printcmd "Creating Log Analytics Workspace ${AKS_LAW_WORKSPACE}"
-runcmd "az resource create \
+printcmd "az resource create  --resource-type Microsoft.OperationalInsights/workspaces  --name ${AKS_LAW_WORKSPACE}  -g ${AZ_RG}  --location ${AZ_LOCATION}  --properties '{}' -o table"
+az resource create \
 --resource-type Microsoft.OperationalInsights/workspaces \
 --name ${AKS_LAW_WORKSPACE} \
 -g ${AZ_RG} \
 --location ${AZ_LOCATION} \
---properties '\{\}' -o table"
+--properties '{}' -o table
 
 #2. Enable AKS Monitoring Add-on for your cluster
 printcmd "Enabling AKS Monitoring Add-on for ${AZ_AKS_CLUSTER}"
