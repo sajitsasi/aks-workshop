@@ -7,8 +7,8 @@ DIR=$(pwd)
 runcmd "kubectl apply --namespace ratingsapp -f ${DIR}/yaml/${RATINGS_API_HPA_YAML}"
 
 #2. Run a load test with the HPA
-INGRESS_EXTERNAL_IP=$(kubectl get services --namespace ingress | grep -v -e NAME -e kubectl -e "controller\-admission" | awk '{print $4}')
-LOADTEST_API_ENDPOINT="https://${INGRESS_EXTERNAL_IP}/api/loadtest"
+INGRESS_HOSTNAME=$(kubectl get services --namespace ingress | grep -v -e NAME -e kubectl -e "controller\-admission" | awk '{print $4}' | sed -e 's/\./\-/g')
+LOADTEST_API_ENDPOINT="https://frontend.${INGRESS_HOSTNAME}.nip.io/api/loadtest"
 printcmd "az container create \ -g ${AZ_RG} -n loadtest --cpu 4 --memory 1 --image azch/artillery --restart-policy Never --command-line \"artillery quick -r 500 -d 120 ${LOADTEST_API_ENDPOINT}\""
 az container create \
 -g ${AZ_RG} \
