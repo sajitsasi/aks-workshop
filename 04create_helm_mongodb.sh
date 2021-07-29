@@ -5,6 +5,7 @@ source ./00source_vars.sh
 #1. Add bitnami repo
 printcmd "Adding bitnami repository"
 helm repo add bitnami https://charts.bitnami.com/bitnami
+kubectl create namespace ratingsapp
 
 #2. Install MongoDB Helm chart
 printcmd "Installing MongoDB Helm chart"
