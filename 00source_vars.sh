@@ -9,11 +9,11 @@ fi
 
 DIR=$(pwd)
 if [ ! -d ${DIR}/src/mslearn-aks-workshop-ratings-api ]; then
-    git clone https://github.com/microsoft/mslearn-aks-workshop-ratings-api.git src/mslearn-aks-workshop-ratings-api
+    git clone https://github.com/MicrosoftDocs/mslearn-aks-workshop-ratings-api src/mslearn-aks-workshop-ratings-api
 fi
 
-if [ !-d ${DIR}/src/mslearn-aks-workshop-ratings-web ]; then
-    git clone https://github.com/microsoft/mslearn-aks-workshop-ratings-web.git src/mslearn-aks-workshop-ratings-web
+if [ ! -d ${DIR}/src/mslearn-aks-workshop-ratings-web ]; then
+    git clone https://github.com/MicrosoftDocs/mslearn-aks-workshop-ratings-web src/mslearn-aks-workshop-ratings-web
 fi
 export AZ_LOCATION="eastus"
 export AZ_RG="aks-wks-${KEY}-rg"
