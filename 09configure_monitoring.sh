@@ -26,3 +26,7 @@ runcmd "az aks enable-addons \
 --addons monitoring \
 --workspace-resource-id ${AKS_LAW_WORKSPACE_ID}"
 printcmd "please give 10 minutes before monitoring data is written to LA workspace..."
+
+#3. Add log reader RBAC to the AKS cluster
+printcmd "Adding log reader RBAC to AKS cluster ${AZ_AKS_CLUSTER}"
+runcmd "kubectl apply -f ${LOGREADER_RBAC_YAML}"

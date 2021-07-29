@@ -38,6 +38,7 @@ export RATINGS_WEB_SERVICE_CLUSTERIP_YAML="ratings-web-service-clusterip.yaml"
 export RATINGS_WEB_INGRESS_YAML="ratings-web-ingress.yaml"
 export RATINGS_WEB_INGRESS_TLS_YAML="ratings-web-ingress-tls.yaml"
 export CLUSTER_ISSUER_YAML="cluster-issuer.yaml"
+export LOGREADER_RBAC_YAML="logreader-rbac.yaml"
 export AKS_LAW_WORKSPACE="aks-wks-${KEY}-workspace"
 
 GREEN="\e[01;32m"
