@@ -10,7 +10,7 @@ runcmd "az resource create \
 --name ${AKS_LAW_WORKSPACE} \
 -g ${AZ_RG} \
 --location ${AZ_LOCATION} \
---properties '{}' -o table"
+--properties '\{\}' -o table"
 
 #2. Enable AKS Monitoring Add-on for your cluster
 printcmd "Enabling AKS Monitoring Add-on for ${AZ_AKS_CLUSTER}"
