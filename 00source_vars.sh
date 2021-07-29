@@ -8,7 +8,7 @@ else
 fi
 
 DIR=$(pwd)
-if [ !-d ${DIR}/src/mslearn-aks-workshop-ratings-api ]; then
+if [ ! -d ${DIR}/src/mslearn-aks-workshop-ratings-api ]; then
     git clone https://github.com/microsoft/mslearn-aks-workshop-ratings-api.git src/mslearn-aks-workshop-ratings-api
 fi
 
