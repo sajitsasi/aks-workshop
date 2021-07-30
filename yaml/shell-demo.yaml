@@ -7,10 +7,14 @@ spec:
   - name: shared-data
     emptyDir: {}
   containers:
-  - name: busybox
-    image: busybox
+  - name: ubuntu
+    image: ubuntu
     volumeMounts:
-    - name: shared-data
-      mountPath: /usr/share/nginx/html
+    - mountPath: "/mnt/azure"
+      name: volume
+  volumes:
+    - name: volume
+      persistentVolumeClaim:
+        claimName: my-azurefile
   hostNetwork: true
   dnsPolicy: Default
