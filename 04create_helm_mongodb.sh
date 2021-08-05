@@ -22,3 +22,4 @@ kubectl create secret generic mongosecret \
 --from-literal=MONGOCONNECTION="mongodb://${MONGO_USER}:${MONGO_PASS}@ratings-mongodb.ratingsapp:27017/ratingsdb"
 printcmd "Checking secret in kubernetes"
 kubectl describe secret mongosecret --namespace ratingsapp
+echo "done"
