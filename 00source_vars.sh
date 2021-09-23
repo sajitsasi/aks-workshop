@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Set to 1 to enable App Gateway Ingress Controller
+export ENABLE_APP_GATEWAY_INGRESS_CONTROLLER=true
+
 if [ -f ./.key ]; then
     KEY=$(cat .key)
 else
@@ -29,6 +32,16 @@ export AZ_PE_SUBNET_CIDR="10.125.18.0/24"
 export AZ_AKS_SVC_CIDR="10.125.17.0/24"
 export AZ_AKS_DNS_IP="10.125.17.10"
 export AZ_ACR_NAME="acr${KEY}"
+export AZ_AKS_TO_APP_GW_VNET_PEERING="aks-appgw-peering"
+
+# App Gateway Ingress Controller configuration
+export AZ_APP_GW_VNET="app-gw-vnet"
+export AZ_APP_GW_VNET_CIDR="10.126.0.0/22"
+export AZ_APP_GW_SUBNET="app-gw-subnet"
+export AZ_APP_GW_SUBNET_CIDR="10.126.0.0/24"
+export AZ_APP_GW_NAME="app-gw${KEY}"
+export AZ_APP_GW_PUBLIC_IP="AppGWPublicIP"
+export AZ_APP_GW_TO_AKS_VNET_PEERING="appgw-aks-peering"
 
 export RATINGS_API_DEPLOY_YAML="ratings-api-deployment.yaml"
 export RATINGS_API_SERVICE_YAML="ratings-api-service.yaml"
@@ -37,6 +50,7 @@ export RATINGS_WEB_DEPLOY_YAML="ratings-web-deployment.yaml"
 export RATINGS_WEB_SERVICE_YAML="ratings-web-service.yaml"
 export RATINGS_WEB_SERVICE_CLUSTERIP_YAML="ratings-web-service-clusterip.yaml"
 export RATINGS_WEB_INGRESS_YAML="ratings-web-ingress.yaml"
+export RATINGS_APPGW_INGRESS_YAML="ratings-appgw-ingress.yaml"
 export RATINGS_WEB_INGRESS_TLS_YAML="ratings-web-ingress-tls.yaml"
 export CLUSTER_ISSUER_YAML="cluster-issuer.yaml"
 export LOGREADER_RBAC_YAML="logreader-rbac.yaml"

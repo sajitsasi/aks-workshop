@@ -63,6 +63,7 @@ runcmd "az aks create \
 --service-cidr ${AZ_AKS_SVC_CIDR} \
 --dns-service-ip ${AZ_AKS_DNS_IP} \
 --docker-bridge-address 172.17.0.1/16 \
+--enable-addons monitoring \
 --enable-managed-identity \
 --generate-ssh-keys -y"
 
@@ -81,4 +82,5 @@ cat << EOF > 99delete_az_resources.sh
 #!/bin/bash
 
 az group delete -n ${AZ_RG} -y --no-wait
+/bin/rm -f 99delete_az_resources.sh .key
 EOF
