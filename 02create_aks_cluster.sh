@@ -63,7 +63,6 @@ runcmd "az aks create \
 --service-cidr ${AZ_AKS_SVC_CIDR} \
 --dns-service-ip ${AZ_AKS_DNS_IP} \
 --docker-bridge-address 172.17.0.1/16 \
---enable-addons monitoring \
 --enable-managed-identity \
 --generate-ssh-keys -y"
 
