@@ -56,6 +56,10 @@ envsubst < ${DIR}/yaml/${CLUSTER_ISSUER_YAML} | kubectl apply --namespace rating
 
 #4. Enable TLS for web service on Ingress
 printcmd "Enabling TLS for web service on ingress..."
-INGRESS_EXTERNAL_IP=$(kubectl get services --namespace ingress | grep -v -e NAME -e kubectl -e "controller\-admission" | awk '{print $4}')
+if [ "$ENABLE_APP_GATEWAY_INGRESS_CONTROLLER" == "true" ]; then
+    INGRESS_EXTERNAL_IP=$(az network public-ip show -g ${AZ_RG} -n ${AZ_APP_GW_PUBLIC_IP} --query "ipAddress" -o tsv)
+else
+  INGRESS_EXTERNAL_IP=$(kubectl get services --namespace ingress | grep -v -e NAME -e kubectl -e "controller\-admission" | awk '{print $4}')
+fi
 export INGRESS_HOST=$(echo ${INGRESS_EXTERNAL_IP} | sed -e 's/\./\-/g')
 envsubst < ${DIR}/yaml/${RATINGS_WEB_INGRESS_TLS_YAML} | kubectl apply --namespace ratingsapp -f -
