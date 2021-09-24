@@ -9,8 +9,13 @@ kubectl create namespace ratingsapp
 
 #2. Install MongoDB Helm chart
 printcmd "Installing MongoDB Helm chart"
+if [[ ${OSTYPE} == "darwin"* ]]; then
+    MD5SUM=md5
+else
+    MD5SUM=md5sum
+fi
 MONGO_USER=azureuser
-MONGO_PASS=$(md5sum .key | awk '{print $1}')
+MONGO_PASS=$(${MD5SUM} .key | awk '{print $1}')
 runcmd "helm install ratings bitnami/mongodb \
 --namespace ratingsapp \
 --set auth.username=${MONGO_USER},auth.password=${MONGO_PASS},auth.database=ratingsdb"

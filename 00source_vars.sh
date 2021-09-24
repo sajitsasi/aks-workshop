@@ -1,7 +1,13 @@
 #!/bin/bash
 
-# Set to 1 to enable App Gateway Ingress Controller
+# Set to true to enable App Gateway Ingress Controller
+# Set to false to enable nginx Ingress Controller
 export ENABLE_APP_GATEWAY_INGRESS_CONTROLLER=true
+if [ "$ENABLE_APP_GATEWAY_INGRESS_CONTROLLER" == "true" ]; then
+  export INGRESS_CLASS="azure/application-gateway"
+else
+  export INGRESS_CLASS="nginx"
+fi
 
 if [ -f ./.key ]; then
     KEY=$(cat .key)
@@ -50,7 +56,6 @@ export RATINGS_WEB_DEPLOY_YAML="ratings-web-deployment.yaml"
 export RATINGS_WEB_SERVICE_YAML="ratings-web-service.yaml"
 export RATINGS_WEB_SERVICE_CLUSTERIP_YAML="ratings-web-service-clusterip.yaml"
 export RATINGS_WEB_INGRESS_YAML="ratings-web-ingress.yaml"
-export RATINGS_APPGW_INGRESS_YAML="ratings-appgw-ingress.yaml"
 export RATINGS_WEB_INGRESS_TLS_YAML="ratings-web-ingress-tls.yaml"
 export CLUSTER_ISSUER_YAML="cluster-issuer.yaml"
 export LOGREADER_RBAC_YAML="logreader-rbac.yaml"

@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: ratings-web-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: ${INGRESS_CLASS}
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   tls:

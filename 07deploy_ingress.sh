@@ -55,6 +55,7 @@ if [ ${ENABLE_APP_GATEWAY_INGRESS_CONTROLLER} == "true" ]; then
     -n ${AZ_AKS_CLUSTER} \
     --addons ingress-appgw \
     --appgw-id ${APP_GW_ID}"
+    INGRESS_EXTERNAL_IP=$(az network public-ip show -g ${AZ_RG} -n ${AZ_APP_GW_PUBLIC_IP} --query "ipAddress" -o tsv)
 else
     printcmd "Installing nginx ingress controller..."
     pruncmd "helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx"
@@ -64,15 +65,15 @@ else
     --set controller.replicaCount=2 \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux
+    INGRESS_EXTERNAL_IP=$(kubectl get services --namespace ingress | grep -v -e NAME -e kubectl -e "controller\-admission" | awk '{print $4}')
+    printcmd "Waiting for Ingress External IP"
+    while [ ${INGRESS_EXTERNAL_IP} = "<pending>" ]; do
+        INGRESS_EXTERNAL_IP=$(kubectl get services --namespace ingress | grep -v -e NAME -e kubectl -e "controller\-admission" | awk '{print $4}')
+        sleep 3
+    done
 fi
 
 #3. Get ingress external IP
-INGRESS_EXTERNAL_IP=$(kubectl get services --namespace ingress | grep -v -e NAME -e kubectl -e "controller\-admission" | awk '{print $4}')
-printcmd "Waiting for Ingress External IP"
-while [ ${INGRESS_EXTERNAL_IP} = "<pending>" ]; do
-    INGRESS_EXTERNAL_IP=$(kubectl get services --namespace ingress | grep -v -e NAME -e kubectl -e "controller\-admission" | awk '{print $4}')
-    sleep 3
-done
 printcmd "ingress external IP is ${INGRESS_EXTERNAL_IP}"
 export INGRESS_EXTERNAL_IP
 export INGRESS_HOST=$(echo ${INGRESS_EXTERNAL_IP} | sed -e 's/\./\-/g')
