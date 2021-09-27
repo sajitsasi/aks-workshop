@@ -28,6 +28,14 @@ az acr build \
 --registry ${AZ_ACR_NAME} \
 --image ratings-api:v1 .
 
+#2c. CPU stress image
+printcmd "Build and push stress image to ACR"
+cd ${DIR}/src/stress
+az acr build \
+-g ${AZ_RG} \
+--registry ${AZ_ACR_NAME} \
+--image stress:v1 .
+
 printcmd "Container image status in ACR"
 az acr repository list -n ${AZ_ACR_NAME} -o table
 
