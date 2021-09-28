@@ -30,3 +30,8 @@ printcmd "please give 10 minutes before monitoring data is written to LA workspa
 #3. Add log reader RBAC to the AKS cluster
 printcmd "Adding log reader RBAC to AKS cluster ${AZ_AKS_CLUSTER}"
 runcmd "kubectl apply -f ${DIR}/yaml/${LOGREADER_RBAC_YAML}"
+
+#4. Run CPU stress test
+printcmd "Running CPU stress test on AKS cluster ${AZ_AKS_CLUSTER}"
+kubectl create namespace cpu-stress-test
+runcmd "envsubst < ${DIR}/yaml/${STRESS_DEPLOYMENT_YAML} | kubectl apply --namespace cpu-stress-test -f -"

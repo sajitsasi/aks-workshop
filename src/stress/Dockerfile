@@ -1,11 +1,11 @@
 FROM alpine:3.11.3
 
-RUN apk update && apk add stress-ng
+RUN apk update && apk add stress-ng bash
 
-ENV nworkers=0
+ENV timeout=5m
 
-ENV cpuload=4
+RUN mkdir -p /usr/app
+COPY ./stress.sh /usr/app/stress.sh
 
-ENV timeout=60
 
-CMD stress-ng --cpu ${nworkers} --cpu-method all --cpu-load ${cpuload} --timeout ${timeout}
+CMD ["bash", "/usr/app/stress.sh"]
