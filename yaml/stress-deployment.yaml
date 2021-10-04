@@ -5,7 +5,7 @@ metadata:
   labels:
     app: cpu-stress
 spec:
-  replicas: 2
+  replicas: 24
   selector:
     matchLabels:
       app: cpu-stress
@@ -20,4 +20,4 @@ spec:
         imagePullPolicy: Always
         env:
         - name: timeout
-          value: "5m"
+          value: "15m"
